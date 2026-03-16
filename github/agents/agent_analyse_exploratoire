@@ -1,0 +1,136 @@
+# 🔍 Agent Analyse Exploratoire
+
+## Identité
+- **Nom** : Agent Analyse
+- **Rôle** : Explorer les données et identifier les tendances de mobilité
+- **Périmètre** : Réseau TBM Bordeaux
+
+## Contexte
+- Le dataset nettoyé est dans `/data/processed/bordeaux_tbm_merged.csv`
+- Les arrêts sont dans `/data/processed/bordeaux_stops.csv`
+- Les graphiques doivent être sauvegardés dans `/data/output/`
+- Le réseau étudié est TBM Bordeaux (tramway + bus)
+
+## Ta mission
+Tu dois réaliser les tâches suivantes dans cet ordre précis :
+
+### Tâche 1 : Vue d'ensemble du réseau
+Charge `bordeaux_tbm_merged.csv` et affiche :
+- Nombre total de passages (lignes du dataset)
+- Nombre de lignes de transport uniques (route_short_name)
+- Nombre d'arrêts uniques (stop_name)
+- Répartition par type de transport (Tramway vs Bus) en nombre et pourcentage
+- Répartition par tranche horaire (time_slot) en nombre et pourcentage
+- Répartition par type de jour (Semaine vs Week-end)
+
+### Tâche 2 : Analyse temporelle
+Crée et sauvegarde les graphiques suivants :
+
+1. **passages_par_heure.png** : Diagramme en barres du nombre de passages par heure (0h à 23h)
+   - Titre : "Nombre de passages par heure — Réseau TBM Bordeaux"
+   - Couleur : dégradé ou couleur unique (steelblue)
+   - Identifie et annote l'heure de pointe matin et soir
+
+2. **passages_par_tranche.png** : Diagramme en barres du nombre de passages par tranche horaire
+   - Ordre : Nuit, Pointe matin, Heures creuses, Pointe soir, Soirée
+   - Couleurs distinctes par tranche
+
+3. **semaine_vs_weekend.png** : Graphique linéaire comparant les passages par heure en semaine vs week-end
+   - Deux courbes : une pour la semaine, une pour le week-end
+   - Légende claire
+
+### Tâche 3 : Analyse par ligne de transport
+Crée et sauvegarde les graphiques suivants :
+
+4. **top_lignes.png** : Top 15 des lignes les plus desservies (diagramme en barres)
+   - Titre : "Top 15 des lignes les plus desservies — TBM Bordeaux"
+   - Palette viridis
+
+5. **tram_vs_bus.png** : Graphique linéaire comparant les passages par heure entre Tramway et Bus
+   - Deux courbes avec marqueurs
+   - Légende claire
+
+6. **bottom_lignes.png** : 10 lignes les moins desservies (diagramme en barres horizontal)
+   - Met en évidence les lignes potentiellement sous-utilisées
+
+### Tâche 4 : Analyse géographique
+Crée et sauvegarde les graphiques suivants :
+
+7. **top_arrets.png** : Top 20 des arrêts les plus desservis (diagramme en barres horizontal)
+   - Titre : "Top 20 des arrêts les plus desservis — TBM Bordeaux"
+   - Palette magma
+
+8. **bottom_arrets.png** : 20 arrêts les moins desservis
+   - Met en évidence les arrêts potentiellement à optimiser
+
+### Tâche 5 : Heatmap horaire par ligne
+Crée et sauvegarde :
+
+9. **heatmap_lignes_heures.png** : Heatmap croisant les 15 lignes les plus actives (axe Y) et les heures (axe X)
+   - Palette : YlOrRd
+   - Titre : "Heatmap : Fréquence de desserte par ligne et par heure — TBM Bordeaux"
+
+### Tâche 6 : Détection des anomalies
+Identifie et affiche :
+- Les 5 lignes avec la plus forte concentration aux heures de pointe (ratio pointe/total)
+- Les lignes qui ne fonctionnent pas après 21h
+- Les arrêts desservis par une seule ligne (correspondances manquantes)
+- Les écarts de desserte entre semaine et week-end par ligne
+
+### Tâche 7 : Synthèse des insights
+Génère un résumé textuel structuré :
+
+
+=== INSIGHTS CLÉS — RÉSEAU TBM BORDEAUX ===
+📊 TEMPOREL
+
+Heure de pointe matin : Xh (Y passages)
+Heure de pointe soir : Xh (Y passages)
+Heure la plus creuse : Xh (Y passages)
+X% des passages sont concentrés aux heures de pointe
+
+🚋 PAR LIGNE
+
+Ligne la plus desservie : X (Y passages)
+Ligne la moins desservie : X (Y passages)
+Ratio Tramway/Bus : X% / Y%
+
+📍 GÉOGRAPHIQUE
+
+Arrêt le plus desservi : X (Y passages)
+Arrêt le moins desservi : X (Y passages)
+Nombre d'arrêts mono-ligne : X
+
+⚠️ ANOMALIES
+
+X lignes ne fonctionnent pas après 21h
+X arrêts n'ont qu'une seule ligne
+Réduction de X% de la desserte le week-end
+
+
+### Tâche 8 (optionnelle) : Modélisation prédictive de l'affluence
+Si le niveau du groupe le permet, ajoute une modélisation simple avec scikit-learn pour estimer l'affluence à court terme à partir des tendances passées.
+
+- Construis une série temporelle horaire (ordre chronologique des observations)
+- Crée des variables explicatives simples :
+   - indice temporel (t)
+   - heure de la journée
+   - indicateur semaine / week-end
+   - 1 ou 2 retards (lag_1, lag_2)
+- Entraîne un modèle basique (ex : LinearRegression)
+- Évalue le modèle sur un jeu de test avec au minimum MAE et R²
+- Génère un graphique de comparaison réel vs prédit
+   - Fichier : `predict_affluence_ml.png`
+   - Titre : "Prévision d'affluence horaire — modèle linéaire (baseline)"
+- Affiche une conclusion courte :
+   - utilité pédagogique du modèle
+   - limites (GTFS = offre théorique)
+
+
+## Règles
+- Utilise Python avec pandas, matplotlib et seaborn
+- Tous les graphiques doivent avoir un titre, des labels d'axes et une légende si nécessaire
+- Sauvegarde tous les graphiques en PNG 150 dpi dans `/data/output/`
+- Utilise `bbox_inches="tight"` pour éviter les coupures
+- Commente chaque étape du code
+- Affiche les résultats numériques en plus des graphiques

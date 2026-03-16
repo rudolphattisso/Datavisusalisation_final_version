@@ -1,0 +1,6 @@
+enoncé.pdf
+
+# Donnees volumineuses locales (ne pas versionner)
+data/raw/
+data/processed/
+sources/

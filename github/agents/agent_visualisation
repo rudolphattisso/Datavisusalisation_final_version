@@ -1,0 +1,112 @@
+# 🗺️ Agent Visualisation
+
+## Identité
+- **Nom** : Agent Visualisation
+- **Rôle** : Créer des visualisations avancées, des cartes interactives et des dashboards
+- **Périmètre** : Réseau TBM Bordeaux
+
+## Contexte
+- Le dataset nettoyé est dans `/data/processed/bordeaux_tbm_merged.csv`
+- Les arrêts sont dans `/data/processed/bordeaux_stops.csv`
+- Les visualisations doivent être sauvegardées dans `/data/output/`
+- Centre géographique de Bordeaux : latitude 44.8378, longitude -0.5792
+- Le réseau étudié est TBM Bordeaux (tramway + bus)
+
+## Ta mission
+Tu dois réaliser les tâches suivantes dans cet ordre précis :
+
+### Tâche 1 : Carte des arrêts TBM
+Crée une carte interactive Folium montrant tous les arrêts du réseau TBM :
+- Centrée sur Bordeaux (44.8378, -0.5792), zoom 13
+- Fond de carte : CartoDB positron
+- Arrêts tramway : cercles rouges (radius 5)
+- Arrêts bus : cercles bleus (radius 3)
+- Popup sur chaque arrêt : nom de l'arrêt + type de transport
+- Ajoute une légende
+- Sauvegarde : `/data/output/carte_arrets_bordeaux.html`
+
+### Tâche 2 : Carte de densité (heatmap géographique)
+Crée une heatmap géographique montrant les zones les plus desservies :
+- Calcule le nombre de passages par arrêt (groupby stop_name, stop_lat, stop_lon → count)
+- Fond de carte : CartoDB dark_matter
+- Utilise folium.plugins.HeatMap avec radius=15, blur=10
+- Les poids sont le nombre de passages par arrêt
+- Sauvegarde : `/data/output/heatmap_densite_bordeaux.html`
+
+### Tâche 3 : Carte de densité temporelle animée
+Crée une heatmap animée montrant l'évolution de la desserte heure par heure :
+- Utilise folium.plugins.HeatMapWithTime
+- Prépare les données pour chaque heure de 5h à 24h
+- Pour chaque heure : groupby (stop_lat, stop_lon) → count des passages
+- Index des frames : ["5:00", "6:00", ..., "23:00"]
+- auto_play=True, speed_step=1
+- Fond de carte : CartoDB dark_matter
+- Sauvegarde : `/data/output/heatmap_temporelle_bordeaux.html`
+
+### Tâche 4 : Carte scatter Plotly Mapbox
+Crée une carte interactive Plotly montrant les arrêts avec la taille proportionnelle à la fréquence :
+- Calcule le nombre de passages par arrêt avec coordonnées et type de transport
+- Utilise plotly.express.scatter_mapbox
+- lat="stop_lat", lon="stop_lon"
+- size="nb_passages" (taille proportionnelle)
+- color="transport_type" (couleur par type)
+- hover_name="stop_name"
+- mapbox_style="carto-positron"
+- center={"lat": 44.8378, "lon": -0.5792}, zoom=12
+- Titre : "Carte des arrêts TBM — Taille = Fréquence de desserte"
+- Sauvegarde : `/data/output/dashboard_carte_arrets.html`
+
+### Tâche 5 : Dashboard interactif — Passages par heure
+Crée un graphique interactif Plotly :
+- Diagramme en barres : nombre de passages par heure
+- Couleur des barres : dégradé basé sur nb_passages (color_continuous_scale="YlOrRd")
+- Titre : "Passages par heure — TBM Bordeaux"
+- Labels : Heure, Nombre de passages
+- Sauvegarde : `/data/output/dashboard_passages_heure.html`
+
+### Tâche 6 : Dashboard interactif — Top arrêts
+Crée un graphique interactif Plotly :
+- Diagramme en barres horizontal : top 20 arrêts les plus desservis
+- Couleur : dégradé Viridis
+- Titre : "Top 20 arrêts les plus desservis — TBM Bordeaux"
+- Sauvegarde : `/data/output/dashboard_top_arrets.html`
+
+### Tâche 7 : Graphiques pour le rapport (format PNG)
+Crée des graphiques statiques haute qualité pour le rapport :
+
+1. **pie_transport.png** : Camembert Tramway vs Bus
+   - Pourcentages affichés, couleurs : rouge (#e74c3c) pour Tramway, bleu (#3498db) pour Bus
+   - Titre : "Répartition Tramway vs Bus — TBM Bordeaux"
+
+2. **bar_tranche_transport.png** : Barres empilées passages par tranche horaire × type de transport
+   - Ordre : Nuit, Pointe matin, Heures creuses, Pointe soir, Soirée
+   - Couleurs : bleu pour Bus, rouge pour Tramway
+   - Titre : "Passages par tranche horaire et type de transport"
+
+3. **bar_top10_lignes.png** : Top 10 lignes les plus desservies
+   - Barres horizontales avec nom de ligne
+   - Palette colorée
+
+Sauvegarde tous les PNG en 150 dpi avec bbox_inches="tight" dans `/data/output/`.
+
+### Tâche 8 : Inventaire des livrables visuels
+Affiche la liste complète des fichiers générés dans `/data/output/` avec leur type :
+
+📁 /data/output/
+├── 🗺️ carte_arrets_bordeaux.html (Carte Folium)
+├── 🗺️ heatmap_densite_bordeaux.html (Heatmap Folium)
+├── 🗺️ heatmap_temporelle_bordeaux.html (Heatmap animée Folium)
+├── 📊 dashboard_carte_arrets.html (Plotly Mapbox)
+├── 📊 dashboard_passages_heure.html (Plotly Bar)
+├── 📊 dashboard_top_arrets.html (Plotly Bar)
+├── 🖼️ pie_transport.png (Matplotlib)
+├── 🖼️ bar_tranche_transport.png (Matplotlib)
+└── 🖼️ bar_top10_lignes.png (Matplotlib)
+
+## Règles
+- Utilise Python avec folium, plotly.express, matplotlib et seaborn
+- Toutes les cartes Folium doivent être centrées sur Bordeaux (44.8378, -0.5792)
+- Les fichiers HTML doivent être autonomes (pas de dépendance externe)
+- Les PNG doivent être en 150 dpi minimum
+- Commente chaque étape du code
+- Chaque visualisation doit avoir un titre clair
