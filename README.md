@@ -199,7 +199,7 @@ La heatmap confirme la forte concentration des passages aux heures de pointe pou
 
 **Figure 11 — Carte interactive des arrêts du réseau TBM.**
 
-🗺️ **CARTE INTERACTIVE :** [Ouvrir la carte des arrêts TBM](data/output/carte_arrets_bordeaux.html)
+🗺️ **CARTE INTERACTIVE :** [Ouvrir la carte des arrêts TBM](https://htmlpreview.github.io/?https://github.com/rudolphattisso/Datavisusalisation_final_version/blob/main/data/output/carte_arrets_bordeaux.html)
 
 La carte révèle une couverture géographique dense dans le centre de Bordeaux et le long des axes de tramway. Les zones périphériques présentent une densité d'arrêts nettement plus faible, desservies principalement par des lignes de bus. Les lignes de tramway (A, B, C) dessinent les grandes artères Est-Ouest et Nord-Sud de l'agglomération.
 
@@ -207,7 +207,7 @@ La carte révèle une couverture géographique dense dans le centre de Bordeaux 
 
 **Figure 12 — Heatmap interactive de la densité de desserte.**
 
-🗺️ **HEATMAP DENSITÉ :** [Ouvrir la heatmap de densité](data/output/heatmap_densite_bordeaux.html)
+🗺️ **HEATMAP DENSITÉ :** [Ouvrir la heatmap de densité](https://htmlpreview.github.io/?https://github.com/rudolphattisso/Datavisusalisation_final_version/blob/main/data/output/heatmap_densite_bordeaux.html)
 
 La heatmap de densité confirme la concentration des passages autour des arrêts du centre-ville (Palais de Justice, Quinconces, Victoire) et de la Gare Saint-Jean. Des zones moins desservies sont visibles en périphérie Nord et Est de la métropole.
 
@@ -215,7 +215,7 @@ La heatmap de densité confirme la concentration des passages autour des arrêts
 
 **Figure 13 — Heatmap temporelle animée de l'offre.**
 
-🗺️ **HEATMAP TEMPORELLE :** [Ouvrir la heatmap temporelle animée](data/output/heatmap_temporelle_bordeaux.html)
+🗺️ **HEATMAP TEMPORELLE :** [Ouvrir la heatmap temporelle animée](https://htmlpreview.github.io/?https://github.com/rudolphattisso/Datavisusalisation_final_version/blob/main/data/output/heatmap_temporelle_bordeaux.html)
 
 La heatmap temporelle illustre la dynamique de la desserte à travers la journée : le réseau démarre progressivement à partir de 5h, atteint son pic entre 7h et 9h, maintient une activité soutenue jusqu'à 19h, puis se réduit progressivement jusqu'à minuit.
 
@@ -223,9 +223,9 @@ La heatmap temporelle illustre la dynamique de la desserte à travers la journé
 
 **Figures 14a, 14b, 14c — Dashboards interactifs**
 
-- 🗺️ **DASHBOARD CARTE :** [Ouvrir le dashboard carte des arrêts](data/output/dashboard_carte_arrets.html)
-- 🗺️ **DASHBOARD HEURES :** [Ouvrir le dashboard passages par heure](data/output/dashboard_passages_heure.html)
-- 🗺️ **DASHBOARD ARRÊTS :** [Ouvrir le dashboard top arrêts](data/output/dashboard_top_arrets.html)
+- 🗺️ **DASHBOARD CARTE :** [Ouvrir le dashboard carte des arrêts](https://htmlpreview.github.io/?https://github.com/rudolphattisso/Datavisusalisation_final_version/blob/main/data/output/dashboard_carte_arrets.html)
+- 🗺️ **DASHBOARD HEURES :** [Ouvrir le dashboard passages par heure](https://htmlpreview.github.io/?https://github.com/rudolphattisso/Datavisusalisation_final_version/blob/main/data/output/dashboard_passages_heure.html)
+- 🗺️ **DASHBOARD ARRÊTS :** [Ouvrir le dashboard top arrêts](https://htmlpreview.github.io/?https://github.com/rudolphattisso/Datavisusalisation_final_version/blob/main/data/output/dashboard_top_arrets.html)
 
 Les trois dashboards Plotly permettent une exploration interactive des données :
 
