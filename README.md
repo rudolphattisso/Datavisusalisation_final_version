@@ -6,6 +6,7 @@
 > ATTISSO Rudolph
 
 Lien  github : https://github.com/rudolphattisso/Datavisusalisation_final_version.git
+Lien resosurces lourdes: https://drive.google.com/drive/folders/1QSpeoVgkR0PqY34uaZS9vEf2UuXrx1h6?usp=drive_link
 
 
 ---
